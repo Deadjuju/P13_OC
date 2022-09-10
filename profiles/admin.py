@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from oc_lettings_site.models import Profile
+
+
+admin.site.register(Profile)
