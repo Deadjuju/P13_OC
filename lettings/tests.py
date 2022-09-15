@@ -1,6 +1,91 @@
-from django.test import TestCase
+from django.test import Client
+from django.urls import reverse
+import pytest
+
+from lettings.models import Address, Letting
 
 
-def test_dummy():
-    assert 1
+CLIENT = Client()
+
+
+@pytest.fixture
+def address(db) -> Address:
+    data = {
+        "number": 7217,
+        "street": "Bedford Street",
+        "city": "Brunswick",
+        "state": "GA",
+        "zip_code": 31525,
+        "country_iso_code": "USA"
+    }
+    return Address.objects.create(**data)
+
+
+@pytest.fixture
+def letting(db, address: Address) -> Letting:
+    data = {
+        "title": "Joshua Tree Green Haus /w Hot Tub",
+        "address": address
+    }
+    return Letting.objects.create(**data)
+
+
+@pytest.mark.django_db
+def test_lettings_route():
+
+    url = reverse('lettings:index')
+    response = CLIENT.get(url)
+
+    assert url == "/lettings/"
+    assert response.status_code == 200
+
+    assert b"<title>Lettings</title>" in response.content
+
+    assert len(response.templates) == 1
+    template_used = response.templates[0].name
+    assert template_used == "lettings/index.html"
+
+
+def test_detail_letting_route(db, address, letting):
+
+    letting_id = letting.pk
+    url = reverse('lettings:letting', kwargs={'letting_id': letting_id})
+    response = CLIENT.get(url)
+
+    assert url == f"/lettings/{letting_id}/"
+    assert response.status_code == 200
+
+    title = letting.title
+    assert f"<title>{title}</title>" in response.content.decode()
+
+    assert len(response.templates) == 1
+    template_used = response.templates[0].name
+    assert template_used == "lettings/letting.html"
+
+
+
+# @pytest.mark.django_db
+# def test_autre_chose():
+#     data_address = {
+#         "number": 7217,
+#         "street": "Bedford Street",
+#         "city": "Brunswick",
+#         "state": "GA",
+#         "zip_code": 31525,
+#         "country_iso_code": "USA"
+#     }
+#     address = Address.objects.create(**data_address)
+#
+#     data_letting = {
+#         "title": "Joshua Tree Green Haus /w Hot Tub",
+#         "address": address
+#     }
+#     letting = Letting.objects.create(**data_letting)
+#
+#     url = reverse('lettings:letting', kwargs={'letting_id': 1})
+#     response = CLIENT.get(url)
+#     pprint.pprint(response.content)
+#
+#     assert b"Joshua Tree Green Haus" in response.content
+
 
