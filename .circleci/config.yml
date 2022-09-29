@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   tests_and_linter: # name of your job
     docker: # executor type
-      - image: cimg/python:3.8 # primary container will run the latest, production-ready base image
+      - image: cimg/base:2021.04 # primary container will run the latest, production-ready base image
         auth:
           username: deadjuju
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
