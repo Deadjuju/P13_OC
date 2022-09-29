@@ -1,12 +1,12 @@
 version: 2.1
 
 jobs:
-  tests_and_linter: # name of your job
-    docker: # executor type
-      - image: cimg/base:2021.04 # primary container will run the latest, production-ready base image
+  tests_and_linter:
+    docker:
+      - image: cimg/base:2021.04
         auth:
           username: deadjuju
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          password: $DOCKERHUB_PASSWORD
 
       steps:
         - run: echo "Say hello to YAML!"
