@@ -5,4 +5,8 @@ jobs:
       - image: cimg/python:3.10.7
     steps:
       - checkout
-      - run: python --version
+      - run:
+      - name: Pytest
+          command: |
+            python --version
+            cat requirements.txt
