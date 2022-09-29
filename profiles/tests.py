@@ -31,6 +31,11 @@ def profile(db, user) -> Profile:
 
 @pytest.mark.django_db
 def test_profiles_route():
+    """
+    GIVEN a URL containing the users profile,
+    WHEN a user tries to access this url",
+    THEN template used and url name are correct.
+    """
 
     url = reverse('profiles:index')
     response = CLIENT.get(url)
@@ -46,6 +51,11 @@ def test_profiles_route():
 
 
 def test_detail_profile_route(db, user, profile):
+    """
+    GIVEN a URL containing a specific user profile,
+    WHEN a user tries to access this url",
+    THEN template used and url name are correct.
+    """
 
     url = reverse('profiles:profile', kwargs={'username': user.username})
     response = CLIENT.get(url)

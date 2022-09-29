@@ -1,5 +1,3 @@
-import pprint
-
 from django.test import Client
 from django.urls import reverse
 import pytest
@@ -10,6 +8,11 @@ CLIENT = Client()
 
 @pytest.mark.django_db
 def test_lettings_route():
+    """
+    GIVEN a URL for index page,
+    WHEN a user tries to access this url",
+    THEN template used and url name are correct.
+    """
 
     url = reverse('index')
     response = CLIENT.get(url)
