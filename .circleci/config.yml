@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies
+          name: Install-dependencies
           command: |
             python --version
             python3 -m venv env
