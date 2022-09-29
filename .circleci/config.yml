@@ -1,15 +1,14 @@
 version: 2.1
 jobs:
-  # running commands on a basic image
-  Hello-World:
+  build:
     docker:
       - image: alpine:3.15
         auth:
-          username: deadjuju
+          username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - run:
-          name: Saying Hello
+          name: The First Step
           command: |
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
