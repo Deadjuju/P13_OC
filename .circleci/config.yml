@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-      - name: Pytest
+          name: Pytest
           command: |
             python --version
             cat requirements.txt
