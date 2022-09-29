@@ -1,12 +1,10 @@
 version: 2.1
-
 jobs:
   tests_and_linter:
     docker:
-      - image: cimg/base:2021.04
+      - image: cimg/base:2022.05
         auth:
           username: deadjuju
-          password: $DOCKERHUB_PASSWORD
-
-      steps:
-        - run: echo "Say hello to YAML!"
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - run: echo "Say hello to YAML!"
