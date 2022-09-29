@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  Test-And-Linter:
     docker:
       - image: cimg/python:3.10.7
     steps:
@@ -13,3 +13,8 @@ jobs:
             . env/bin/activate
             pip install -r requirements.txt
             pytest -v
+
+workflows:
+  Main-Workflow:
+    jobs:
+      - Test-And-Linter
