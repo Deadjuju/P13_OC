@@ -11,8 +11,5 @@ jobs:
             python --version
             python3 -m venv env
             . env/bin/activate
-            echo "Before install requirements"
-            pip list
             pip install -r requirements.txt
-            echo "After install requirements"
-            pip list
+            pytest -v
