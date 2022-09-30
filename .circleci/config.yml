@@ -20,26 +20,6 @@ jobs:
           paths:
             - .
 
-#jobs:
-#  Test-And-Linter:
-#    docker:
-#      - image: cimg/python:3.10.7
-#    steps:
-#      - checkout
-#      - run:
-#          name: Pytest + Flake8
-#          command: |
-#            python --version
-#            python3 -m venv venv
-#            . venv/bin/activate
-#            pip install -r requirements.txt
-#            pytest
-#      - run:
-#          name: Pip List
-#          command: |
-#            pip list
-#            pip freeze
-
 workflows:
   build_test_deploy:
     jobs:
