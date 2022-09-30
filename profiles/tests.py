@@ -11,7 +11,8 @@ CLIENT = Client()
 @pytest.fixture
 def user(db) -> User:
     data = {
-        "password": "pbkdf2_sha256$180000$zjnQu4LiqMAT$Qxom08ahzw11iPlX6kYyySa94yJXdjrptta6Qzx8HWE=",
+        "password":
+            "pbkdf2_sha256$180000$zjnQu4LiqMAT$Qxom08ahzw11iPlX6kYyySa94yJXdjrptta6Qzx8HWE=",
         "username": "HeadlinesGazer",
         "first_name": "Jamie",
         "last_name": "Lal",
