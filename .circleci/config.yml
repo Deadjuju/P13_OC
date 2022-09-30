@@ -1,25 +1,43 @@
 version: 2.1
+orbs:
+  python: circleci/python@2.1.1
+
 jobs:
-  Test-And-Linter:
-    docker:
-      - image: cimg/python:3.10.7
+  build_and_test:
+    executor: python/default # use the default executor defined within the orb
     steps:
-      - checkout
+      - checkout # checkout source code
+      - python/install-packages:
+          pkg-manager: pip
       - run:
-          name: Pytest + Flake8
-          command: |
-            python --version
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-            pytest
-      - run:
-          name: Pip List
-          command: |
-            pip list
-            pip freeze
+          name: Run tests
+          command: python -m pytest
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
+
+#jobs:
+#  Test-And-Linter:
+#    docker:
+#      - image: cimg/python:3.10.7
+#    steps:
+#      - checkout
+#      - run:
+#          name: Pytest + Flake8
+#          command: |
+#            python --version
+#            python3 -m venv venv
+#            . venv/bin/activate
+#            pip install -r requirements.txt
+#            pytest
+#      - run:
+#          name: Pip List
+#          command: |
+#            pip list
+#            pip freeze
 
 workflows:
-  Main-Workflow:
+  build_test_deploy:
     jobs:
-      - Test-And-Linter
+      - build_and_test
