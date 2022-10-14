@@ -41,7 +41,7 @@ jobs:
           echo "--- Try build... ---"
           docker build -t $DOCKER_USERNAME/$DOCKER_HUB_PROJECT:$TAG .
           echo "--- Try Connect to Docker Hub... ---"
-          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          echo $DOCKER_PASS | docker login -u $DOCKER_USERNAME --password-stdin
           echo "--- Log: Success ---"
           echo "--- Try push... ---"
           docker push $DOCKER_USERNAME/$DOCKER_HUB_PROJECT:$TAG
