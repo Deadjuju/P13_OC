@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 FROM cimg/python:3.10.7
 
 ENV PYTHONDONTWRITEBYTECODE 1
