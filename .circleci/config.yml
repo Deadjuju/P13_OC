@@ -20,6 +20,9 @@ jobs:
           root: ~/project
           paths:
             - .
+      - run:
+        name: echo cmd
+        command: ls -la
 
   build_docker_image:
     docker:
