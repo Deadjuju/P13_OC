@@ -38,6 +38,7 @@ jobs:
 
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
+          echo "- Try build... -"
           docker build -t $DOCKER_USERNAME/$DOCKER_HUB_PROJECT:$TAG .
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
           docker push $DOCKER_USERNAME/$DOCKER_HUB_PROJECT:$TAG
