@@ -11,14 +11,11 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run:
-          name: Export settings file
-          command: export DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.settings
-      - run:
           name: Run tests
-          command: python -m pytest
+          command: export DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.settings && python -m pytest
       - run:
           name: Run linter
-          command: python -m flake8
+          command: export DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.settings && python -m flake8
       - persist_to_workspace:
           root: ~/project
           paths:
