@@ -12,10 +12,10 @@ jobs:
           pkg-manager: pip
       - run:
           name: Run tests
-          command: export DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.settings && python -m pytest
+          command: export DJANGO_SETTINGS_MODULE=$DEVELOP_SETTINGS && python -m pytest
       - run:
           name: Run linter
-          command: export DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.settings && python -m flake8
+          command: export DJANGO_SETTINGS_MODULE=$DEVELOP_SETTINGS && python -m flake8
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -51,7 +51,7 @@ jobs:
       - run:
           command: |
             echo "COUCOU!"
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.production_settings --app ${HEROKU_APP_NAME}
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DJANGO_SETTINGS_MODULE=$PROD_SETTINGS --app ${HEROKU_APP_NAME}
       - heroku/deploy-via-git
 
 
