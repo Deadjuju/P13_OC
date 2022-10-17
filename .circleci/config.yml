@@ -11,8 +11,8 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run:
-          - name: Export settings file
-          - command: export DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.settings
+          name: Export settings file
+          command: export DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.settings
       - run:
           name: Run tests
           command: python -m pytest
