@@ -11,6 +11,9 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run:
+          - name: Export settings file
+          - command: export DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.settings
+      - run:
           name: Run tests
           command: python -m pytest
       - run:
@@ -51,7 +54,7 @@ jobs:
       - run:
           command: |
             echo "COUCOU!"
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DJANGO_SETTINGS_MODULE=oc_lettings_site.production_settings --app ${HEROKU_APP_NAME}
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.production_settings --app ${HEROKU_APP_NAME}
       - heroku/deploy-via-git
 
 
