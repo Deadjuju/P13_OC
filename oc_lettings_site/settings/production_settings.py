@@ -1,7 +1,20 @@
+import environ
+
 from .base import *
 
 
-DEBUG = False
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False),
+)
+# reading .env file
+environ.Env.read_env()
+
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env('SECRET_KEY')
+
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS += ["oc-p13.herokuapp.com"]
 
