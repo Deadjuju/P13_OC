@@ -1,6 +1,6 @@
 FROM cimg/python:3.10.7
 
-ARG DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.production_settings
+ARG DJANGO_SETTINGS_MODULE=oc_lettings_site.settings.develop
 
 ENV DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
 ENV PYTHONDONTWRITEBYTECODE 1
