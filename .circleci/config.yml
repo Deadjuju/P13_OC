@@ -53,6 +53,7 @@ jobs:
           command: |
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set DJANGO_SETTINGS_MODULE=$PROD_SETTINGS --app ${HEROKU_APP_NAME}
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set SECRET_KEY=$SECRET_KEY --app ${HEROKU_APP_NAME}
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set SENTRY_DSN=$SENTRY_DSN --app ${HEROKU_APP_NAME}
       - heroku/deploy-via-git
 
 
