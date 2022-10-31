@@ -10,11 +10,11 @@ CLIENT = Client()
 def test_lettings_route():
     """
     GIVEN a URL for index page,
-    WHEN a user tries to access this url",
+    WHEN a user tries to access this url",h
     THEN template used and url name are correct.
     """
 
-    url = reverse('index')
+    url = reverse('home:index')
     response = CLIENT.get(url)
 
     assert url == "/"
