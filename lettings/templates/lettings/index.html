@@ -4,7 +4,7 @@
     <ul>
     {% for letting in lettings_list %}
         <li>
-            <a href="{% url 'lettings:letting' letting_id=letting.id %}">
+            <a href="{{ letting.get_absolute_url }}">
                 {{ letting.title }}
             </a>
         </li>

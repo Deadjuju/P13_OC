@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinLengthValidator
+from django.urls import reverse
 
 
 class Address(models.Model):
@@ -23,3 +24,6 @@ class Letting(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("lettings:letting", args=[self.pk])
