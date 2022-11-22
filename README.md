@@ -123,7 +123,7 @@ Fichier settings à utiliser lors de la production.
 Ici **oc_lettings_site.settings.production_settings** .  
 
 >DOCKER_HUB_PROJECT  
-Nom du projet (du repository) sur dockerub.
+Nom du projet (du repository) sur **dockerhub**.
 
 >DOCKER_PASS  
 Mot de passe **dockerhub** du compte.
