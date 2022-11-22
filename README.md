@@ -9,13 +9,22 @@
 
 ![Logo](src_readme/logoOCL.png)
   
-## Résumé
+## Sommaire <a id="summary"></a>
+- [Sommaire](#summary)  
+- [Résumé](#resume)  
+- [Développement local](#local_dev)  
+  - [Prérequis](#local_dev_prerequisites)  
+  - [macOS / Linux](#local_dev_mac_linux)  
+  - [Windows](#local_dev_windows)  
+- [Déploiement](#deployment)
+
+## Résumé <a id="resume"></a>
 
 Site web d'Orange County Lettings
 
-## Développement local
+## Développement local <a id="local_dev"></a>
 
-### Prérequis
+### Prérequis <a id="local_dev_prerequisites"></a>
 
 - Compte GitHub avec accès en lecture à ce repository
 - Git CLI
@@ -24,7 +33,7 @@ Site web d'Orange County Lettings
 
 Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
 
-### macOS / Linux
+### macOS / Linux <a id="local_dev_mac_linux"></a>
 
 #### Cloner le repository
 
@@ -80,7 +89,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - Aller sur `http://localhost:8000/admin`
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
 
-### Windows
+### Windows <a id="local_dev_windows"></a>
 
 Utilisation de PowerShell, comme ci-dessus sauf :
 
@@ -89,7 +98,7 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
   
     
-## Déploiement
+## Déploiement <a id="deployment"></a>
 
 Pour déployer notre code en production nous utilisons les technologies suivantes :
 >[CircleCI](https://circleci.com/)  
@@ -162,7 +171,7 @@ python -c "import secrets; print(secrets.token_urlsafe())"
 >SENTRY_DSN  
 Clef DSN de l'application sur Sentry. 
 
-### Vérification des tests du code <a id="principe1"></a>
+### 1. Vérification des tests du code <a id="principe1"></a>
 CircleCI détecte le changement et vérifie les tests configurés dans le fichier **<code> [.circleci/config.yml](https://github.com/Deadjuju/P13_OC/blob/main/.circleci/config.yml)</code>**.
 Les tests effectués ici sont  
 - tests des vues (views) avec **Pytest**  
@@ -170,12 +179,12 @@ Les tests effectués ici sont
 
 **Si** les tests sont validés CircleCi passe à la construction de l'image Docker.
 
-### 2. Construction de l'image Docker <a id="principe2">
+### 2. Construction de l'image Docker <a id="principe2"></a>
   
 L'image docker est construite grâce au fichier **[Dockerfile](https://github.com/Deadjuju/P13_OC/blob/main/Dockerfile)**, elle permet ici de d'utiliser une version de python 3.10, d'installer les dépendances du projet et de démarrer le serveur en utilisant le fichier de ***[settings](https://github.com/Deadjuju/P13_OC/blob/main/oc_lettings_site/settings/production_settings.py)*** correspondant à la production. 
 L'image est également **pushée** vers le repo **dockerhub** du projet avec un ***tag*** de commit généré par CircleCI et un ***tag*** **latest** représentant la version la plus à jour de l'image Docker.  
 L'image *latest* pourra ainsi être utilisé lors du développement.  
 
-### 3. Déploiement du site <a id=principe3></a> 
+### 3. Déploiement du site <a id="principe3"></a> 
 Une fois l'image **Docker** construite elle est automatiquement pushée sur **Heroku** (voir partie **heroku_deploy** du fichier **<code> [.circleci/config.yml](https://github.com/Deadjuju/P13_OC/blob/main/.circleci/config.yml) </code>**).  
 Une fois déployé, les erreurs éventuelles pourront être suivies via **Sentry**. 
